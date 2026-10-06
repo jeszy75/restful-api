@@ -1,0 +1,13 @@
+name: restful-api
+variables:
+  - name: baseUrl
+    value: https://api.restful-api.dev
+    description: ""
+  - name: collectionName
+    value: legosets
+    description: ""
+  - name: objectId
+    value: ""
+    description: ""
+  - secret: true
+    name: apiKey

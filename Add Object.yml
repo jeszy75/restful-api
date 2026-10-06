@@ -1,0 +1,42 @@
+info:
+  name: Add Object
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{baseUrl}}/collections/{{collectionName}}/objects"
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Fire Station",
+        "data": {
+          "number": "60215-1",
+          "theme": "City",
+          "year": 2019,
+          "pieces": 509,
+          "packaging": "box",
+          "weight": {
+            "value": 1.17,
+            "unit": "kg"
+          },
+          "tags": ["Brick Separator", "Dogs", "Drone", "Fire", "Fire Car"]
+        }
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        const id = res.body.id;
+        console.log("Object created with id", id)
+        bru.setVar("lastCreatedObjectId", id);
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
